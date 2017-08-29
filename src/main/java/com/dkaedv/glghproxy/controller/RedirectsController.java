@@ -53,8 +53,8 @@ public class RedirectsController {
 		String bestMatchPattern = (String ) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
 		AntPathMatcher apm = new AntPathMatcher();
 		String branch = apm.extractPathWithinPattern(bestMatchPattern, path);
+		branch = branch.replaceAll("%2F", "/");
 
 		return "redirect:" + gitlabUrl + "/" + namespace + "/" + repo + "/tree/" + branch;
 	}
-
 }
